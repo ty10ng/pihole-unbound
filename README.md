@@ -26,9 +26,12 @@ To run this setup on a Raspberry Pi:
 2. Clone this repository onto the Pi.
 3. Follow the setup instructions below.
 
-## Network Mode: Host
+## Gotchas and Other Considerations
+### Network Mode: Host
 
-The `network_mode: host` setting for Pi-hole is crucial. In a standard Docker setup, services communicate through an internal Docker network. If Pi-hole were to use this internal network, all DNS requests would appear to come from a single internal Docker IP address. This would prevent Pi-hole from providing meaningful client-based metrics and would make it hard to discern which device on your network made which request.
+> **Note**: The `network_mode: host` setting for the PiHole docker container is needed for PiHole to associate FQDNs to each request. If you have an alternative way to do this, please let me know. 
+
+In a standard Docker setup, services communicate through an internal Docker network. If Pi-hole were to use this internal network, all DNS requests would appear to come from a single internal Docker IP address. This would prevent Pi-hole from providing meaningful client-based metrics and would make it hard to discern which device on your network made which request.
 
 By using `network_mode: host`, Pi-hole operates on the host's network stack and can therefore see the true IP address of each device making a DNS request. This not only provides better metrics but also allows for more granular control, such as setting up specific blocklists or allowlists for individual devices.
 
