@@ -1,0 +1,40 @@
+---
+version: '3'
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    environment:
+      TZ: 'America/Detroit'
+      WEBPASSWORD: "${PIHOLE_PASSWORD}"
+      DNS1: "${LOCAL_IPV4_ADDRESS}#5335"
+      DNS2: 'no'
+    volumes:
+      - './pihole/etc-pihole/:/etc/pihole/'
+      - './pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    restart: unless-stopped
+    depends_on:
+        - unbound
+    network_mode: host
+  unbound:
+    build: ./unbound
+    container_name: unbound
+    volumes:
+      - ./unbound/unbound.conf:/etc/unbound/unbound.conf
+      - ./unbound/unbound_zones:/etc/unbound/zones
+    restart: unless-stopped
+    ports:
+      - "5335:5335/tcp"
+      - "5335:5335/udp"
+    networks:
+        docker_private:
+                ipv4_address: 172.21.200.2
+networks:
+  docker_private:
+    name: "docker_private"
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.21.200.0/24
+          gateway: 172.21.200.1
+          ip_range: 172.21.200.128/25 # 172.21.200.129 - 172.21.200.254

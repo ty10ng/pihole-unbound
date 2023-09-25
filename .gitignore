@@ -1,0 +1,5 @@
+.env
+pihole/etc-dnsmasq.d
+pihole/etc-pihole
+unbound/unbound_logs
+unbound/unbound_zones
