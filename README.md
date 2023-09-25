@@ -29,7 +29,7 @@ To run this setup on a Raspberry Pi:
 ## Gotchas and Other Considerations
 ### Network Mode: Host
 
-> **Note**: The `network_mode: host` setting for the PiHole docker container is needed for PiHole to associate FQDNs to each request. If you have an alternative way to do this, please let me know. 
+> **Note**: The `network_mode: host` setting for the PiHole docker container is needed for PiHole to associate FQDNs to each request. This is important if you want metrics from PiHole. Otherwise, you'll only see 1 private docker address for all DNS queries. If you have an alternative way to do this, please let me know. 
 
 In a standard Docker setup, services communicate through an internal Docker network. If Pi-hole were to use this internal network, all DNS requests would appear to come from a single internal Docker IP address. This would prevent Pi-hole from providing meaningful client-based metrics and would make it hard to discern which device on your network made which request.
 
