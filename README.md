@@ -71,4 +71,15 @@ Contributions, issues, and feature requests are welcome. Feel free to check issu
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project's setup and configuration scripts are licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+However, the software packages utilized by this project are governed by their own licenses:
+
+- **Docker**: Docker and Docker Compose are products of Docker, Inc. Refer to Docker's [official documentation](https://docs.docker.com/) and their associated licenses for more details.
+  
+- **Pi-hole**: Pi-hole is an open-source project. Please refer to the [Pi-hole repository](https://github.com/pi-hole/pi-hole) and its associated license for more information.
+  
+- **Unbound**: Unbound is a product of NLnet Labs. For licensing details and more, see the [official Unbound documentation](https://nlnetlabs.nl/documentation/unbound/unbound-license/).
+
+Always make sure to adhere to the terms and conditions specified in the licenses of the software you're using.
+
